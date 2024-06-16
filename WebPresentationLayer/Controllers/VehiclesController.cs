@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using LogicLayer.Models;
+using DataLayer;
 
 namespace WebPresentationLayer.Controllers
 {

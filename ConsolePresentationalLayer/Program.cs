@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebPresentationLayer.Controllers;
+using ConsolePresentationalLayer.Controllers;
+using DataLayer;
 
 namespace ConsolePresentationalLayer
 {

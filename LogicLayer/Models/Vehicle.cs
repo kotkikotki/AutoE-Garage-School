@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
+using LogicLayer.Interfaces;
 
 namespace LogicLayer.Models
 {
@@ -64,7 +65,7 @@ namespace LogicLayer.Models
         };
     }
 
-    public class Vehicle
+    public class Vehicle : IModelDebug
     {
         [Key]
         public int Id { get; set; }
@@ -165,6 +166,11 @@ namespace LogicLayer.Models
                     return "Other";
             }
             return string.Empty;
+        }
+
+        public string SingleTextOutput()
+        {
+            return $"{Manifacturer}, {Model}, {Year}, {Description}, {GetVehicleTypeString()}, {GetVehicleColorString()}, {Images.Count}, {PriceLv}, {SellerContactInfo}";
         }
     }
 }
