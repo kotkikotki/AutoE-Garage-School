@@ -1,0 +1,162 @@
+﻿@using LogicLayer.Models
+@model IEnumerable<LogicLayer.Models.Vehicle>
+
+@{
+    ViewData["Title"] = "Vehicles catalog";
+
+    SelectListItem any = new SelectListItem();
+    any.Text = "Any";
+    any.Value = "-1";
+}
+
+
+<h1>Catalog</h1>
+<hr class="border-2 border-top" />
+
+<div class="mt-5 col-md-12">
+</div>
+
+<a class="lead">Filters</a>
+<div class="mt-1 col-md-12">
+</div>
+
+<form asp-action="Index">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <ul class="list-unstyled ps-0">
+                    <li class="mb-1">
+                        <a class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed shadow-none" data-bs-toggle="collapse" data-bs-target="#manifacturer-collapse" aria-expanded="false">
+                            ꞏ Manifacturer
+                        </a>
+                        <div class="collapse" id="manifacturer-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <input name="Manifacturer" type="search" placeholder="Manifacturer..." aria-label="Manifacturer" class="form-control" />
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <a class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed shadow-none" data-bs-toggle="collapse" data-bs-target="#model-collapse" aria-expanded="false">
+                            ꞏ Model
+                        </a>
+                        <div class="collapse" id="model-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <input name="Model" type="search" placeholder="Model..." aria-label="Model" class="form-control" />
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <a class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed shadow-none" data-bs-toggle="collapse" data-bs-target="#year-collapse" aria-expanded="false">
+                            ꞏ Year Range
+                        </a>
+                        <div class="collapse" id="year-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <input name="YearMin" type="search" placeholder="Minimum year..." aria-label="YearMin" class="form-control" />
+                                <div class="mt-1 col-md-12">
+                                </div>
+                                <input name="YearMax" type="search" placeholder="Maximum year..." aria-label="YearMax" class="form-control" />
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <a class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed shadow-none" data-bs-toggle="collapse" data-bs-target="#description-collapse" aria-expanded="false">
+                            ꞏ Description
+                        </a>
+                        <div class="collapse" id="description-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <input name="Description" type="search" placeholder="Description..." aria-label="Description" class="form-control" />
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm">
+                <ul class="list-unstyled ps-0">
+                    <li class="mb-1">
+                        <a class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed shadow-none" data-bs-toggle="collapse" data-bs-target="#type-collapse" aria-expanded="false">
+                            ꞏ Vehicle Type
+                        </a>
+                        <div class="collapse" id="type-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <select name="VehicleType" class="form-control" asp-items="@new SelectList(EnumItems.VehicleTypes, nameof(ValueTuple<int, string>.Item1), nameof(ValueTuple<int, string>.Item2)).Prepend(any)"></select>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <a class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed shadow-none" data-bs-toggle="collapse" data-bs-target="#color-collapse" aria-expanded="false">
+                            ꞏ Vehicle Color
+                        </a>
+                        <div class="collapse" id="color-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <select name="VehicleColor" class="form-control" asp-items="@new SelectList(EnumItems.VehicleColors, nameof(ValueTuple<int, string>.Item1), nameof(ValueTuple<int, string>.Item2)).Prepend(any)"></select>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <a class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed shadow-none" data-bs-toggle="collapse" data-bs-target="#price-collapse" aria-expanded="false">
+                            ꞏ Price Range
+                        </a>
+                        <div class="collapse" id="price-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <input name="PriceLvMin" type="search" placeholder="Minimum price in lv..." aria-label="PriceLvMin" class="form-control" />
+                                <div class="mt-1 col-md-12">
+                                </div>
+                                <input name="PriceLvMax" type="search" placeholder="Maximum price in lv..." aria-label="PriceLvMax" class="form-control" />
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <a class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed shadow-none" data-bs-toggle="collapse" data-bs-target="#seller-collapse" aria-expanded="false">
+                            ꞏ Seller Info
+                        </a>
+                        <div class="collapse" id="seller-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <input name="SellerContactInfo" type="search" placeholder="Seller info..." aria-label="SellerContactInfo" class="form-control" />
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <div class="col-md-6">
+                            <p></p>
+                        </div>
+                    </li>
+                    <div class="col-md-6">
+                        <button class="btn btn-dark shadow-none" type="submit">Search</button>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</form>
+<hr class="border-2 border-top" />
+<div class="mt-5 col-md-12">
+</div>
+
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            @foreach(var item in Model)
+            {
+                string price = $"{item.PriceLv} lv.";
+                <div class="col mx-auto">
+                    <div class="card shadow-sm">
+                        <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="data:image/png;base64,@(item.Images.Count > 0 && item.Images[0]  != null && item.Images[0].Length > 0 ? Convert.ToBase64String(item.Images[0]) : string.Empty)"
+                             alt="Image" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <div class="card-body">
+                            <p class="card-text">@Html.FormatValue($"{item.Manifacturer}\n{item.Model}\n{item.Year}", null)</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a type="button" asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary shadow-none">View</a>
+                                    <a type="button" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary shadow-none">Edit</a>
+                                </div>
+                                <small class="text-body-secondary">@Html.FormatValue(price, null)</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
